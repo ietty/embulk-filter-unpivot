@@ -8,19 +8,14 @@
 
 ## Configuration
 
-- **outer_key**: description (string, required)
-- **inner_key**: description (string, required)
-- **columns**: description (array, default: [])
-- **additional**: description (array, default: [])
+- **outer_key**: normalization outer key field name(string, required)
+- **inner_key**: inner key field name (string, required)
+- **columns**: inner key key/value set (array, default: [])
+- **additional**: additional field (array, default: [])
 
 ## Example
 
-```yaml
-filters:
-  - type: unpivot
-    option1: example1
-    option2: example2
-```
+
 
 
 ## Build
