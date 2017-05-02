@@ -1,6 +1,7 @@
 # Unpivot filter plugin for Embulk
 
 [Embulk](https://github.com/embulk/embulk/) filter plugin to nomalize fields.
+
 「横持ち」のテーブル構造から「縦持ち」のテーブルに変換するembulkフィルタ。
 
 ## Overview
