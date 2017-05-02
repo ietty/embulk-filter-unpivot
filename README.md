@@ -1,6 +1,6 @@
 # Unpivot filter plugin for Embulk
 
-TODO: Write short description here and embulk-filter-unpivot.gemspec file.
+[Embulk](https://github.com/embulk/embulk/) filter plugin to nomalize fields.
 
 ## Overview
 
@@ -8,9 +8,10 @@ TODO: Write short description here and embulk-filter-unpivot.gemspec file.
 
 ## Configuration
 
-- **option1**: description (integer, required)
-- **option2**: description (string, default: `"myvalue"`)
-- **option3**: description (string, default: `null`)
+- **outer_key**: description (string, required)
+- **inner_key**: description (string, required)
+- **columns**: description (array, default: [])
+- **additional**: description (array, default: [])
 
 ## Example
 
