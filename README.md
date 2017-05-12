@@ -4,6 +4,9 @@
 
 「横持ち」のテーブル構造から「縦持ち」のテーブルに変換するembulkフィルタ。
 
+こちらにも書いてます。
+http://qiita.com/takemi-ohama/items/0c01b7b41f3cf08e968f
+
 ## Overview
 
 * **Plugin type**: filter
