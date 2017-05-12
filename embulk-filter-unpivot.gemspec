@@ -2,10 +2,10 @@
 Gem::Specification.new do |spec|
   spec.name          = "embulk-filter-unpivot"
   spec.version       = "0.1.0"
-  spec.authors       = ["YOUR_NAME"]
+  spec.authors       = ["takemi.ohama"]
   spec.summary       = "Unpivot filter plugin for Embulk"
   spec.description   = "Unpivot"
-  spec.email         = ["YOUR_NAME"]
+  spec.email         = ["engineer@ietty.co.jp"]
   spec.licenses      = ["MIT"]
   # TODO set this: spec.homepage      = "https://github.com/YOUR_NAME/embulk-filter-unpivot"
 
