@@ -1,5 +1,5 @@
-require 'pry'
-require 'pry-nav'
+#require 'pry'
+#require 'pry-nav'
 
   module Embulk
     module Filter
@@ -18,7 +18,7 @@ require 'pry-nav'
 
           out_columns = [
             Column.new(nil, task["outer_key"], :string),
-            Column.new(nil, task["inner_key"], :long),
+            Column.new(nil, task["inner_key"], :string),
           ]
 
           task["additional"].each do |name|
@@ -32,12 +32,14 @@ require 'pry-nav'
 
         def init
           # initialization code:
-          @outer_key = task["outer_key"]
-          @inner_key = task["inner_key"]
-          @idx_columns = {}
+          @idx_outer = get_index(task["outer_key"], in_schema)
+          @idx_inner = get_index(task["inner_key"], in_schema)
+          @indexes = {}
+          task["additional"].each do |name|
+            @indexes[name] = get_index(name, in_schema)
+          end
           task["columns"].each do |target|
-            col = in_schema.select{|c| c.name == target["name"] }
-            @idx_columns[target["name"]] = col[0].index
+            @indexes[target["name"]] = get_index(target["name"], in_schema)
           end
         end
 
@@ -45,19 +47,17 @@ require 'pry-nav'
         end
 
         def add(page)
-          idx_outer = get_index(@outer_key, page)
-          idx_inner = get_index(@inner_key, page)
-
           page.each do |record|
             new_record = []
-            new_record.push(record[idx_outer])
-            new_record.push(record[idx_inner])
+            new_record.push(record[@idx_outer])
+            new_record.push(record[@idx_inner])
+
             task["additional"].each do |name|
-              index = get_index(name, page)
-              new_record.push(record[index])
+              new_record.push(record[@indexes[name]])
             end
+
             task["columns"].each do |target|
-              index = @idx_columns[target["name"]]
+              index = @indexes[target["name"]]
               next if record[index] == 0 or record[index] == ''
               new_record[1] = target["id"]
               page_builder.add(new_record)
@@ -71,8 +71,8 @@ require 'pry-nav'
 
         private
 
-        def get_index(name, page)
-          col = page.schema.select{|c| c.name == name }
+        def get_index(name, schema)
+          col = schema.select{|c| c.name == name }
           col[0].index
         end
 
@@ -80,4 +80,3 @@ require 'pry-nav'
 
     end
   end
-
