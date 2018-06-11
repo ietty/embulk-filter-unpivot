@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.description   = "Unpivot"
   spec.email         = ["engineer@ietty.co.jp"]
   spec.licenses      = ["MIT"]
-  # TODO set this: spec.homepage      = "https://github.com/YOUR_NAME/embulk-filter-unpivot"
+  spec.homepage      = "https://github.com/ietty/embulk-filter-unpivot"
 
   spec.files         = `git ls-files`.split("\n") + Dir["classpath/*.jar"]
   spec.test_files    = spec.files.grep(%r{^(test|spec)/})
